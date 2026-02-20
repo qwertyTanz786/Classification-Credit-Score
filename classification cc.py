@@ -4,7 +4,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split,GridSearchCV
 df = pd.read_csv(r"C:\Users\panch\Downloads\cleaned credit score.csv")
-# 1️⃣ CLEAN DATA FIRST
 for col in df.columns:
     if df[col].dtype == "object":
         df[col] = df[col].str.replace("_", "", regex=False)
@@ -27,4 +26,5 @@ cv_rf=GridSearchCV(
 cv_rf.fit(X_train, Y_train)
 model = cv_rf.best_estimator_
 Y_pred = model.predict(X_test)
+
 print(classification_report(Y_test, Y_pred))
